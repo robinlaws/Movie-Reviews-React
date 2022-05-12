@@ -1,50 +1,47 @@
 import React from 'react';
 import './App.css';
-
-function Header(props) {
-  return(
-    <header>
-      <div className="topnav">
-        <a className="active" href="reviews">Movie Reviews</a>
-        <a href="user_review">Leave Review</a>
-      </div>
-      <h1>Movie Reviews</h1>
-    </header>
-  );
-  }
-
-  function Main(props) {
-    return(
-      <section>
-        <ul style={{textAlign: "left"}}>
-        {props.movies.map(movie => <li key={movie.id}>{movie.title}</li>)}
-        </ul>
-      </section>
-    );
-  }
-
-  function Footer(props){
-    return (
-      <footer>
-      <p>Copyright {props.year}</p>
-      </footer>
-    );
-  }
+import { BrowserRouter as Routes, Route } from "react-router-dom";
 
 
 const movies = [
   "Titanic", "Lion King", "Gone With the Wind"
 ];
 
+const Main = () => {
+  return(
+        <div>
+            <h1>Welcome to Movie Reviews</h1>
+        </div>
+  );
+};
+
+const Reviews = () => {
+  return(
+        <div>
+            <h1>Movie Reviews</h1>
+        </div>
+  );
+};
+
+const LeaveReview = () => {
+  return(
+        <div>
+            <h1>Leave Review</h1>
+        </div>
+  );
+};
+
 //variables
 const movieObjects = movies.map((movie, i) => ({id: i, title: movie}));
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main movies = {movieObjects}/>
-      <Footer year={new Date().getFullYear()} />
+    <div className ='App'>
+      <Routes>
+        <Route exact path = "/" component= {<Main />} />
+        <Route exact path="/Reviews" component={<Reviews />} />
+        <Route exact path="/LeaveReview" component={<LeaveReview />} />
+      </Routes>
     </div>
   );
 }
