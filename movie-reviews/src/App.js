@@ -4,10 +4,21 @@ import './App.css';
 
 import {Home, LeaveReview, NotFoundPage, Nav} from './pages';
 import {Routes, Route } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 
 
 function App(){
+  const [movies, setMovies] = useState(null);
+  useEffect( () => {
+    fetch("/movies.json") 
+    .then( response => response.json() ) 
+    .then( setMovies )
+    .then( console.log(movies))
+    .catch( e => console.log(e.message) );
+
+  },[])
+
     return (
       <div className="App">
       <Nav />

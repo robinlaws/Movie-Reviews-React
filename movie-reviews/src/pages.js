@@ -22,6 +22,7 @@ export function LeaveReview(){
         <div><h3>LEAVE REVIEW</h3></div>
     );
 };
+
 export function Nav() {
     return (
       <div className="topnav">
