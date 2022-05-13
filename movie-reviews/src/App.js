@@ -1,49 +1,30 @@
-import React from 'react';
+
+import React, { Component } from "react";
 import './App.css';
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+
+import Home from './pages/home';
+import NotFoundPage from './pages/404';
+import Reviews from './pages/reviews';
+import LeaveReview from './pages/leavereview';
+import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Nav from "./components/nav";
 
 
-const movies = [
-  "Titanic", "Lion King", "Gone With the Wind"
-];
 
-const Main = () => {
-  return(
-        <div>
-            <h1>Welcome to Movie Reviews</h1>
-        </div>
-  );
-};
-
-const Reviews = () => {
-  return(
-        <div>
-            <h1>Movie Reviews</h1>
-        </div>
-  );
-};
-
-const LeaveReview = () => {
-  return(
-        <div>
-            <h1>Leave Review</h1>
-        </div>
-  );
-};
-
-//variables
-const movieObjects = movies.map((movie, i) => ({id: i, title: movie}));
-
-function App() {
-  return (
-    <div className ='App'>
+function App(){
+    return (
+      <div className="App">
+      <Nav />
       <Routes>
-        <Route exact path = "/" component= {<Main />} />
-        <Route exact path="/Reviews" component={<Reviews />} />
-        <Route exact path="/LeaveReview" component={<LeaveReview />} />
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/reviews" element={<Reviews/>}/>
+          <Route exact path="/leavereview" element={<LeaveReview/>}/>
       </Routes>
-    </div>
-  );
-}
+      </div>
+    );
+  }
 
 export default App;
+
+
+

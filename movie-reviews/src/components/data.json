@@ -1,0 +1,23 @@
+
+ [
+    {"title": "The Shawshank Redemption",
+    "release": "1994",
+    "actors": ["Morgan Freeman", "Tim Robbins", "Bob Gunton"],
+    "image": "./movieImages/shawshank.jepg",
+    "rating": "5"},
+
+    {
+        "title": "The Godfather",
+        "release": "1972",
+        "actors": ["Marlon Brando", "Al Pacino", "James Caan"],
+        "image": "./movieImages/godfather.jpeg",
+        "rating": "5"},
+
+    {
+        "title": "The Dark Knight",
+        "release": "2008",
+        "actors": ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
+        "image": "./movieImages/darkknight.jpeg",
+        "rating": "4"}
+    ]
+
