@@ -11,10 +11,19 @@ export function NotFoundPage(){
     );
 };
 
-export function Home(){
+export function Home(props){
     return (
         <div><h3>WELCOME TO OUR MOVIE REVIEW PAGE</h3>
-        <h2>{movies.title}</h2>
+        <ul style={{textAlign: "left" }}>
+        {props.movies.map(movie => ( 
+            <p>
+          <li>{movie.title}</li>
+          <li>{movie.release}</li>
+          <li>{movie.actors}</li>
+          <li>{movie.rating}</li>
+        </p>
+        ))}
+      </ul>
         </div>
     );
 };
