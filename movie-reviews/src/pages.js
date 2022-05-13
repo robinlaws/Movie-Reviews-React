@@ -1,5 +1,7 @@
+import App from "./App";
 import React from "react";
 import {Link, useLocation } from 'react-router-dom';
+
 
 export function NotFoundPage(){
     let location = useLocation();
@@ -12,6 +14,7 @@ export function NotFoundPage(){
 export function Home(){
     return (
         <div><h3>WELCOME TO OUR MOVIE REVIEW PAGE</h3>
+        <h2>{movies.title}</h2>
         </div>
     );
 };
