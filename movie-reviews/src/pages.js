@@ -13,14 +13,16 @@ export function NotFoundPage(){
 
 export function Home(props){
     return (
-        <div><h3>WELCOME TO OUR MOVIE REVIEW PAGE</h3>
-        <ul style={{textAlign: "left" }}>
+        <div><h1>MOVIE REVIEWS</h1>
+        <ul style={{textAlign: "left", listStyleType: "none"  }}>
         {props.movies.map(movie => ( 
             <p>
-          <li>{movie.title}</li>
-          <li>{movie.release}</li>
-          <li>{movie.actors}</li>
-          <li>{movie.rating}</li>
+          <li><h3>{movie.title}</h3></li>
+          <li>Release: {movie.release}</li>
+          <li>Actors: {movie.actors}</li>
+          <li>Rating: {movie.rating}/5</li>
+          <img src={movie.image}></img>
+          <hr></hr>
         </p>
         ))}
       </ul>
@@ -31,7 +33,7 @@ export function Home(props){
 
 export function LeaveReview(){
     return (
-        <div><h3>LEAVE REVIEW</h3></div>
+        <div><h1>LEAVE REVIEW</h1></div>
     );
 };
 
