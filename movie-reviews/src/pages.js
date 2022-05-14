@@ -1,5 +1,5 @@
 import App from "./App";
-import React from "react";
+import {React, useState} from "react";
 import {Link, useLocation } from 'react-router-dom';
 
 
@@ -13,26 +13,49 @@ export function NotFoundPage(){
 
 export function Home(props){
     return (
-        <div><h3>WELCOME TO OUR MOVIE REVIEW PAGE</h3>
-        <ul style={{textAlign: "left" }}>
+        <div><h1>MOVIE REVIEWS</h1>
+        <ul style={{textAlign: "left", listStyle: "none" }}>
         {props.movies.map(movie => ( 
             <p>
-          <li>{movie.title}</li>
-          <li>{movie.release}</li>
-          <li>{movie.actors}</li>
-          <li>{movie.rating}</li>
-        </p>
+                <li><h2>{movie.title}</h2></li>
+                <li>Release Date: {movie.release}</li>
+                <li>Actors: {movie.actors}</li>
+                <li>Rating: {movie.rating} /5</li>
+                <img src={movie.image}></img>
+                <hr></hr>  
+            </p>  
         ))}
+
       </ul>
         </div>
     );
 };
 
 
-export function LeaveReview(){
+export function LeaveReview(props){
+
     return (
-        <div><h3>LEAVE REVIEW</h3></div>
+        <div><h1>LEAVE REVIEW</h1>
+        <form>
+            <label>Title:
+                <input type="text"/>
+            </label>
+            <label>Release:
+                <input type="text"/>
+            </label>
+            <label>Actors:
+                <input type="text"/>
+            </label>
+            <label>Rating:
+                <input type="number" min="0" max="5"/>
+            </label>
+            <input type="submit">Submit</input>
+        </form>
+        </div>    
     );
+
+
+
 };
 
 export function Nav() {
@@ -45,3 +68,9 @@ export function Nav() {
       </div>
     );
   };
+
+
+
+
+
+
