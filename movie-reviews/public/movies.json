@@ -25,13 +25,13 @@
         "release": "1999",
         "actors": ["Brad Pitt ", "Edward Norton ", "Meat Loaf "],
         "image": "./movieImages/fightclub.jpeg",
-        "rating": 4.5 },
+        "rating": 4 },
     {
         "title": "The Matrix",
         "release": "1999",
         "actors": ["Keanu Reeves ", "Laurence Fishburne ", "Carie-Anne Moss "],
         "image": "./movieImages/matrix.jpeg",
-        "rating": 4.5}
+        "rating": 4}
 
 ]
 

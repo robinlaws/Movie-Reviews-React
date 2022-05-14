@@ -1,5 +1,5 @@
 import App from "./App";
-import React from "react";
+import {React, useState} from "react";
 import {Link, useLocation } from 'react-router-dom';
 
 
@@ -25,16 +25,39 @@ export function Home(props){
           <hr></hr>
         </p>
         ))}
+
       </ul>
         </div>
     );
 };
 
 
-export function LeaveReview(){
+export function LeaveReview(props){
+
     return (
         <div><h1>LEAVE REVIEW</h1></div>
+=======
+        <div><h1>LEAVE REVIEW</h1>
+        <form>
+            <label>Title:
+                <input type="text"/>
+            </label>
+            <label>Release:
+                <input type="text"/>
+            </label>
+            <label>Actors:
+                <input type="text"/>
+            </label>
+            <label>Rating:
+                <input type="number" min="0" max="5"/>
+            </label>
+            <input type="submit">Submit</input>
+        </form>
+        </div>    
     );
+
+
+
 };
 
 export function Nav() {
@@ -47,3 +70,9 @@ export function Nav() {
       </div>
     );
   };
+
+
+
+
+
+
