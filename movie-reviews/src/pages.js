@@ -14,16 +14,16 @@ export function NotFoundPage(){
 export function Home(props){
     return (
         <div><h1>MOVIE REVIEWS</h1>
-        <ul style={{textAlign: "left", listStyle: "none" }}>
+        <ul style={{textAlign: "left", listStyleType: "none"  }}>
         {props.movies.map(movie => ( 
             <p>
-                <li><h2>{movie.title}</h2></li>
-                <li>Release Date: {movie.release}</li>
-                <li>Actors: {movie.actors}</li>
-                <li>Rating: {movie.rating} /5</li>
-                <img src={movie.image}></img>
-                <hr></hr>  
-            </p>  
+          <li><h3>{movie.title}</h3></li>
+          <li>Release: {movie.release}</li>
+          <li>Actors: {movie.actors}</li>
+          <li>Rating: {movie.rating}/5</li>
+          <img src={movie.image}></img>
+          <hr></hr>
+        </p>
         ))}
 
       </ul>
@@ -35,6 +35,8 @@ export function Home(props){
 export function LeaveReview(props){
 
     return (
+        <div><h1>LEAVE REVIEW</h1></div>
+=======
         <div><h1>LEAVE REVIEW</h1>
         <form>
             <label>Title:
