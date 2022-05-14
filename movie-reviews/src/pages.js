@@ -11,8 +11,9 @@ export function NotFoundPage(){
     );
 };
 
-export function Home(props){
+export function Home(){
     return (
+<<<<<<< HEAD
         <div><h1>MOVIE REVIEWS</h1>
         <ul style={{textAlign: "left", listStyle: "none" }}>
         {props.movies.map(movie => ( 
@@ -27,6 +28,10 @@ export function Home(props){
         ))}
 
       </ul>
+=======
+        <div><h3>WELCOME TO OUR MOVIE REVIEW PAGE</h3>
+        <h2>{movies.title}</h2>
+>>>>>>> parent of a308df3 (display)
         </div>
     );
 };
