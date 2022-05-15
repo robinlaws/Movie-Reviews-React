@@ -9,32 +9,37 @@ import { useState, useEffect } from 'react';
 
 function App(){
   const [movies, setMovies] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+
   useEffect( () => {
-    fetch("/movies.json") 
+    setLoading(true);
+    fetch("/movies.json")
     .then( response => response.json() ) 
     .then( setMovies )
+    .then(() => setLoading(false))
     .then( console.log(movies))
+
     .catch( e => console.log(e.message) );
-
   },[]);
-  const movieObjects = [];
-
-    if (movies != null || movies != undefined ){
-      movieObjects.push(movies.map((movie, i) => {console.log(movie)}));
-  };
 
 
+  if (loading) return <h1>Loading...</h1>;
+
+  if (movies){
     return (
       <div className="App">
       <Nav />
       <Routes>
-          <Route exact path="/" element={<Home movies={movieObjects}/>} />
-          <Route exact path="/leavereview" element={<LeaveReview/>}/>
+          <Route exact path="/" element={<Home movies={movies} setMovies={setMovies} />} />
+          <Route exact path="/leavereview" element={<LeaveReview movies={movies} setMovies={setMovies}/>}/>
           <Route path="*" element={NotFoundPage}/>
       </Routes>
       </div>
     );
   }
+  return <div>No Data Available</div>
+}
 
 export default App;
 

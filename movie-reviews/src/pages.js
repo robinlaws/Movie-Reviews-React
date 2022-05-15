@@ -1,6 +1,6 @@
-import App from "./App";
-import {React, useState} from "react";
+import React, { useEffect } from "react";
 import {Link, useLocation } from 'react-router-dom';
+import { useState } from "react";
 
 
 export function NotFoundPage(){
@@ -11,58 +11,54 @@ export function NotFoundPage(){
     );
 };
 
-export function Home(){
+export function Home(props){
     return (
-<<<<<<< HEAD
-        <div><h1>MOVIE REVIEWS</h1>
-        <ul style={{textAlign: "left", listStyleType: "none"  }}>
-        {props.movies.map(movie => ( 
-            <p>
-          <li><h3>{movie.title}</h3></li>
-          <li>Release: {movie.release}</li>
-          <li>Actors: {movie.actors}</li>
-          <li>Rating: {movie.rating}/5</li>
-          <img src={movie.image}></img>
-          <hr></hr>
-        </p>
+        <div>
+            <h1>MOVIE REVIEWS</h1>
+            <ul style={{textAlign: "left", listStyleType: "none"  }}>
+            {props.movies.map((movie, i) => ( 
+            <section>
+            <li key={i}><h3>{movie.title}</h3></li>
+            <li>Release: {movie.release}</li>
+            <li>Actors: {movie.actors}</li>
+            <li>Rating: {movie.rating}/5</li>
+            <img src={movie.image} alt="Movie Poster"></img>
+            <hr></hr>
+            </section>         
         ))}
-
       </ul>
-=======
-        <div><h3>WELCOME TO OUR MOVIE REVIEW PAGE</h3>
-        <h2>{movies.title}</h2>
->>>>>>> parent of a308df3 (display)
-        </div>
+</div>
     );
 };
 
-
 export function LeaveReview(props){
+    const [inputs, setInputs] = useState({});
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}));
+        console.log(inputs);        
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        props.movies.push(inputs);
+        console.log(props.movies);
+        alert("Movie Submitted!");
+    }
 
     return (
-        <div><h1>LEAVE REVIEW</h1></div>
-=======
         <div><h1>LEAVE REVIEW</h1>
-        <form>
-            <label>Title:
-                <input type="text"/>
-            </label>
-            <label>Release:
-                <input type="text"/>
-            </label>
-            <label>Actors:
-                <input type="text"/>
-            </label>
-            <label>Rating:
-                <input type="number" min="0" max="5"/>
-            </label>
-            <input type="submit">Submit</input>
-        </form>
-        </div>    
+            <form onSubmit={handleSubmit}>
+                <label>Title:<input type="text" name="title" value={inputs.title || ""} onChange={handleChange}/></label>
+                <label>Release:<input type="text" name="release" value={inputs.release || ""} onChange={handleChange}/></label>
+                <label>Actors:<input type="text" name="actors" value={inputs.actors || ""} onChange={handleChange}/></label>
+                <label>Rating:<input type="number" max="5" min="0"  name="rating" value={inputs.rating || ""} onChange={handleChange}/></label>
+                <input type="submit" value="Submit" onClick={handleSubmit}/>
+            </form>
+        </div>
     );
-
-
-
 };
 
 export function Nav() {
@@ -70,11 +66,13 @@ export function Nav() {
       <div className="topnav">
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/leavereview">Leave Review</Link>
+          <Link to="/leavereview" >Leave Review</Link>
         </nav>
       </div>
     );
   };
+
+
 
 
 
