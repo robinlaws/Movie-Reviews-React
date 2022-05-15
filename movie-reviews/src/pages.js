@@ -12,24 +12,47 @@ export function NotFoundPage(){
 };
 
 export function Home(props){
+    let movieList=[];
+    useEffect( () => {
+        console.log(props.movies);}, [movieList]);
+
+    const removeMovie = (event) => {
+        const name = event.target.name;
+        props.movies.forEach(movie => {
+            if (movie.title !== name){
+                movieList.push(movie);
+                props.setMovies(movieList);
+            }
+        });
+        alert("Movie has been removed!")
+    }
+
+    if(props.movies){
     return (
         <div>
             <h1>MOVIE REVIEWS</h1>
             <ul style={{textAlign: "left", listStyleType: "none"  }}>
-            {props.movies.map((movie, i) => ( 
-            <section>
-            <li key={i}><h3>{movie.title}</h3></li>
-            <li>Release: {movie.release}</li>
-            <li>Actors: {movie.actors}</li>
-            <li>Rating: {movie.rating}/5</li>
-            <img src={movie.image} alt="Movie Poster"></img>
+            {props.movies.map(movie=> ( 
+            <>
+                <li key={movie.title}><h3>{movie.title}</h3></li>
+                <li key={movie.release}>Release: {movie.release}</li>
+                <li key={movie.actors}>Actors: {movie.actors}</li>
+                <li key={movie.rating}>Rating: {movie.rating}/5</li>
+                <img src={movie.image} alt="movie poster"></img>
+                <button onClick={removeMovie} name={movie.title}>Remove Movie</button>
             <hr></hr>
-            </section>         
+            </>
+      
         ))}
       </ul>
 </div>
-    );
-};
+    )};
+        return (
+            <p>NO MOVIES AVAILABLE!</p>
+        );
+    };
+    
+
 
 export function LeaveReview(props){
     const [inputs, setInputs] = useState({});

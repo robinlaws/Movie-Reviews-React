@@ -19,7 +19,6 @@ function App(){
     .then( setMovies )
     .then(() => setLoading(false))
     .then( console.log(movies))
-
     .catch( e => console.log(e.message) );
   },[]);
 
