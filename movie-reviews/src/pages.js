@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import {Link, useLocation } from 'react-router-dom';
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form';
+
 
 
 export function NotFoundPage(){
@@ -18,6 +22,10 @@ export function Home(props){
 
     const removeMovie = (event) => {
         const name = event.target.name;
+        if(props.movies.length === 1){
+            props.setMovies(null);
+        }
+        if(props.movies){
         props.movies.forEach(movie => {
             if (movie.title !== name){
                 movieList.push(movie);
@@ -26,6 +34,7 @@ export function Home(props){
         });
         alert("Movie has been removed!")
     }
+}
 
     if(props.movies){
     return (
@@ -41,8 +50,7 @@ export function Home(props){
                 <img src={movie.image} alt="movie poster"></img>
                 <button onClick={removeMovie} name={movie.title}>Remove Movie</button>
             <hr></hr>
-            </>
-      
+            </>      
         ))}
       </ul>
 </div>
@@ -52,10 +60,9 @@ export function Home(props){
         );
     };
     
-
-
 export function LeaveReview(props){
     const [inputs, setInputs] = useState({});
+    const [movieList, setMovieList] = useState([]);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -65,10 +72,17 @@ export function LeaveReview(props){
     }
 
     const handleSubmit = (event) => {
+        if(props.movies){
         event.preventDefault();
         props.movies.push(inputs);
         console.log(props.movies);
-        alert("Movie Submitted!");
+        alert("Movie Review has been added successfully!");
+        } 
+        else {
+            setMovieList(inputs);
+            props.setMovies(movieList);
+        }
+        
     }
 
     return (
@@ -78,9 +92,21 @@ export function LeaveReview(props){
                 <label>Release:<input type="text" name="release" value={inputs.release || ""} onChange={handleChange}/></label>
                 <label>Actors:<input type="text" name="actors" value={inputs.actors || ""} onChange={handleChange}/></label>
                 <label>Rating:<input type="number" max="5" min="0"  name="rating" value={inputs.rating || ""} onChange={handleChange}/></label>
+                <select name="image" value={inputs.image || ""} onChange={handleChange}>
+                    <option defaultValue="" value="">Select Movie Image</option>
+                    <option value='/movieImages/generic.jpeg'> Other</option>
+                    <option value='/movieImages/forrestgump.jpeg'>Forrest Gump</option>
+                    <option value='/movieImages/inception.jpeg'>Inception</option>
+                    <option value='/movieImages/lambs.jpeg'>Silence of the Lambs</option>
+                    <option value='/movieImages/shawshank.jpg'>The Shawshank Redemption</option>
+                    <option value='/movieImages/darkknight.jpg'>The Dark Knight</option>
+                    <option value='/movieImages/godfather.jpg'>The Godfather</option>
+                    <option value='/movieImages/fightclub.jpg'>Fight Club</option>                   
+                </select>
                 <input type="submit" value="Submit" onClick={handleSubmit}/>
             </form>
         </div>
+        
     );
 };
 

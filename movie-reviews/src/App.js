@@ -5,13 +5,10 @@ import {Home, LeaveReview, NotFoundPage, Nav} from './pages';
 import {Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
-
-
 function App(){
   const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(false);
-
-
+  
   useEffect( () => {
     setLoading(true);
     fetch("/movies.json")
@@ -22,10 +19,7 @@ function App(){
     .catch( e => console.log(e.message) );
   },[]);
 
-
   if (loading) return <h1>Loading...</h1>;
-
-  if (movies){
     return (
       <div className="App">
       <Nav />
@@ -37,8 +31,6 @@ function App(){
       </div>
     );
   }
-  return <div>No Data Available</div>
-}
 
 export default App;
 

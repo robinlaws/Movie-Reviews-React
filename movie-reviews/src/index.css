@@ -29,3 +29,8 @@ code {
   background-color: #ddd;
   color: gray;
 }
+
+h1, h2, h3 {
+  font-family:  'American Typewriter', serif, monospace;
+  font-weight: bold;
+}
