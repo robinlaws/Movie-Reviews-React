@@ -29,12 +29,12 @@ export function Home(props){
     return (
         <div className="container">
             <div style={{paddingBottom: "100px"}} id="align-content-*-center">
-                <h1>MOVIE REVIEWS</h1>
+                <h1><strong>MOVIE REVIEWS</strong></h1>
                 <hr></hr>
                 <ul style={{listStyleType: "none", textAlign: "center"  }}>
                 {props.movies.map(movie=> ( 
                     <>
-                    <li key={movie.title}><h3>{movie.title}</h3></li>
+                    <li key={movie.title}><h4><strong>{movie.title}</strong></h4></li>
                     <li key={movie.release}>Release: {movie.release}</li>
                     <li key={movie.actors}>Actors: {movie.actors}</li>
                     <li key={movie.rating}>Rating: {movie.rating}/5</li>
@@ -75,7 +75,7 @@ export function LeaveReview(props){
     //leave review page html
     return (
     <div className="container">
-        <h1>LEAVE A REVIEW</h1>
+        <h1><strong>LEAVE A REVIEW</strong></h1>
         <div className="formContainer">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div class="form-group">
