@@ -8,6 +8,7 @@ function App(){
   const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(false);
   
+  //get data from movies.json
   useEffect( () => {
     setLoading(true);
     fetch("/movies.json")
@@ -19,20 +20,22 @@ function App(){
   },[]);
 
   if (loading) return <h1>Loading...</h1>;
-    return (
-      <>
-      <div className="App">
-        <Nav />
-        <Routes>
-            <Route exact path="/" element={<Home movies={movies} setMovies={setMovies} />} />
-            <Route exact path="/leavereview" element={<LeaveReview movies={movies} setMovies={setMovies}/>}/>
-            <Route path="*" element={<NotFoundPage/>}/>
-        </Routes>
-      </div>
-      <Footer />
-      </>
-    );
-  };
+
+  //display once data has loaded
+  return (
+    <>
+    <div className="App">
+      <Nav />
+      <Routes>
+          <Route exact path="/" element={<Home movies={movies} setMovies={setMovies} />} />
+          <Route exact path="/leavereview" element={<LeaveReview movies={movies} setMovies={setMovies}/>}/>
+          <Route path="*" element={<NotFoundPage/>}/>
+      </Routes>
+    </div>
+    <Footer />
+    </>
+  );
+};
 
 export default App;
 

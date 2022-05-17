@@ -45,6 +45,7 @@ h1, h2, h3 {
   margin:auto;
   padding: 50px;
   background-color: rgb(219, 213, 208);
+  border-radius: 10%;
 }
 
 .input-group-text{
