@@ -28,7 +28,6 @@ function App(){
             <Route exact path="/leavereview" element={<LeaveReview movies={movies} setMovies={setMovies}/>}/>
             <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
-        <hr></hr>
       </div>
       <Footer />
       </>
