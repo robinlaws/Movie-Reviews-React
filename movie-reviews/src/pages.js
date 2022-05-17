@@ -2,10 +2,6 @@ import React, { useEffect } from "react";
 import {Link, useLocation } from 'react-router-dom';
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Form';
-import Form from 'react-bootstrap/Form';
-
-
 
 export function NotFoundPage(){
     let location = useLocation();
@@ -30,18 +26,16 @@ export function Home(props){
             if (movie.title !== name){
                 movieList.push(movie);
                 props.setMovies(movieList);
-            }
-        });
+            }});
         alert("Movie has been removed!")
-    }
-}
+    }}
 
     if(props.movies){
     return (
         <div id="align-content-*-center">
             <h1>MOVIE REVIEWS</h1>
             <hr></hr>
-            <ul style={{textAlign: "left", listStyleType: "none", textAlign: "center"  }}>
+            <ul style={{listStyleType: "none", textAlign: "center"  }}>
             {props.movies.map(movie=> ( 
             <>
                 <li key={movie.title}><h3>{movie.title}</h3></li>
@@ -52,8 +46,7 @@ export function Home(props){
                 <button onClick={removeMovie} name={movie.title}>Remove Movie</button>               
             <hr></hr>
             </>
-
-        ))}
+            ))}
             </ul>
         </div>
     )};
@@ -69,22 +62,25 @@ export function LeaveReview(props){
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}));
-        console.log(inputs);        
+        setInputs(values => ({...values, [name]: value})); 
     }
 
     const handleSubmit = (event) => {
         if(props.movies){
-        event.preventDefault();
-        props.movies.push(inputs);
-        console.log(props.movies);
-        alert("Movie Review has been added successfully!");
+            event.preventDefault();
+            props.movies.push(inputs);
+            console.log(props.movies);
+            alert("Movie Review has been added successfully!");
+            setInputs({});
         } 
         else {
-            setMovieList(inputs);
+            event.preventDefault();
+            console.log(inputs);
+            movieList.push(inputs);
             props.setMovies(movieList);
-        }
-        
+            alert("Movie Review has been added successfully!");
+            setInputs({});
+        }       
     }
 
     return (
