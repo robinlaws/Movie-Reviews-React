@@ -1,7 +1,7 @@
 
 import React from "react";
 import './App.css';
-import {Home, LeaveReview, NotFoundPage, Nav} from './pages';
+import {Home, LeaveReview, NotFoundPage, Nav, Footer} from './pages';
 import {Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
@@ -28,6 +28,8 @@ function App(){
           <Route exact path="/leavereview" element={<LeaveReview movies={movies} setMovies={setMovies}/>}/>
           <Route path="*" element={NotFoundPage}/>
       </Routes>
+      <hr></hr>
+      <Footer />
       </div>
     );
   }
