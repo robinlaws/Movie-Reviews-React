@@ -38,22 +38,24 @@ export function Home(props){
 
     if(props.movies){
     return (
-        <div>
+        <div id="align-content-*-center">
             <h1>MOVIE REVIEWS</h1>
-            <ul style={{textAlign: "left", listStyleType: "none"  }}>
+            <hr></hr>
+            <ul style={{textAlign: "left", listStyleType: "none", textAlign: "center"  }}>
             {props.movies.map(movie=> ( 
             <>
                 <li key={movie.title}><h3>{movie.title}</h3></li>
                 <li key={movie.release}>Release: {movie.release}</li>
                 <li key={movie.actors}>Actors: {movie.actors}</li>
                 <li key={movie.rating}>Rating: {movie.rating}/5</li>
-                <img src={movie.image} alt="movie poster"></img>
-                <button onClick={removeMovie} name={movie.title}>Remove Movie</button>
+                <img src={movie.image} alt="movie poster"></img><br /><br />
+                <button onClick={removeMovie} name={movie.title}>Remove Movie</button>               
             <hr></hr>
-            </>      
+            </>
+
         ))}
-      </ul>
-</div>
+            </ul>
+        </div>
     )};
         return (
             <p>NO MOVIES AVAILABLE!</p>
@@ -87,12 +89,12 @@ export function LeaveReview(props){
 
     return (
         <div><h1>LEAVE REVIEW</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Title:<input type="text" name="title" value={inputs.title || ""} onChange={handleChange}/></label>
-                <label>Release:<input type="text" name="release" value={inputs.release || ""} onChange={handleChange}/></label>
-                <label>Actors:<input type="text" name="actors" value={inputs.actors || ""} onChange={handleChange}/></label>
-                <label>Rating:<input type="number" max="5" min="0"  name="rating" value={inputs.rating || ""} onChange={handleChange}/></label>
-                <select name="image" value={inputs.image || ""} onChange={handleChange}>
+            <form className="form-control" onSubmit={handleSubmit}>
+                <label>Title:<input className="input-group" type="text" name="title" value={inputs.title || ""} onChange={handleChange}/></label><br />
+                <label>Release:<input className="input-group" type="text" name="release" value={inputs.release || ""} onChange={handleChange}/></label><br />
+                <label>Actors:<input className="input-group" type="text" name="actors" value={inputs.actors || ""} onChange={handleChange}/></label><br />
+                <label>Rating:<input className="input-group" type="number" max="5" min="0"  name="rating" value={inputs.rating || ""} onChange={handleChange}/></label><br />
+                <select name="image" className="drop-down" value={inputs.image || ""} onChange={handleChange}>
                     <option defaultValue="" value="">Select Movie Image</option>
                     <option value='/movieImages/generic.jpeg'> Other</option>
                     <option value='/movieImages/forrestgump.jpeg'>Forrest Gump</option>
@@ -102,8 +104,8 @@ export function LeaveReview(props){
                     <option value='/movieImages/darkknight.jpg'>The Dark Knight</option>
                     <option value='/movieImages/godfather.jpg'>The Godfather</option>
                     <option value='/movieImages/fightclub.jpg'>Fight Club</option>                   
-                </select>
-                <input type="submit" value="Submit" onClick={handleSubmit}/>
+                </select><br /><br />
+                <input className="btn-primary" type="submit" value="Submit" onClick={handleSubmit}/>
             </form>
         </div>
         

@@ -33,4 +33,5 @@ code {
 h1, h2, h3 {
   font-family:  'American Typewriter', serif, monospace;
   font-weight: bold;
+  padding-top: 50px;
 }
