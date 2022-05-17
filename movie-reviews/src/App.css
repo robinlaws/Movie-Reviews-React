@@ -1,6 +1,10 @@
 .App {
   text-align: center;
+  background-color: rgb(241, 237, 237);
+  min-height: 75%;
+  padding-bottom: 100px; 
 }
+
 h1, h2, h3 {
   font-family:  'American Typewriter', serif, monospace;
   font-weight: bold;
@@ -15,4 +19,3 @@ label, .selection {
   font-family:  'American Typewriter', serif, monospace;
   font-weight: bold;
 }
-
