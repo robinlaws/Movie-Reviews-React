@@ -34,10 +34,10 @@ export function Home(props){
                 <ul style={{listStyleType: "none", textAlign: "center"  }}>
                 {props.movies.map(movie=> ( 
                     <>
-                    <li key={movie.title}><h4><strong>{movie.title}</strong></h4></li>
-                    <li key={movie.release}>Release: {movie.release}</li>
-                    <li key={movie.actors}>Actors: {movie.actors}</li>
-                    <li key={movie.rating}>Rating: {movie.rating}/5</li>
+                    <li key={movie.index}><h4><strong>{movie.title}</strong></h4></li>
+                    <li key={movie.index}>Release: {movie.release}</li>
+                    <li key={movie.index}>Actors: {movie.actors}</li>
+                    <li key={movie.index}>Rating: {movie.rating}/5</li>
                     <img src={movie.image} alt="movie poster"></img><br /><br />
                     <button className= "btn-primary" onClick={removeMovie} name={movie.title}>Remove Movie</button>               
                     <hr></hr>
