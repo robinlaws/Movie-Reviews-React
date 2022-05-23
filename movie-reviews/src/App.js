@@ -15,7 +15,7 @@ function App(){
   //get data from moviesJSON.json
   useEffect( () => {
     const fetchData = async () => {
-      const result = await fetch(`/api/movies`);
+      const result = await fetch('/api/movies');
       const body = await result.json();
       console.log(body);
       setMovies(body);

@@ -17,10 +17,11 @@ const withDB = async(operations, res) => {
     }
 }
 
-app.get('/api/movies', async(req, res) => {
+app.get('/api/movies', async(res) => {
         const movieList = [];
         withDB(async(db) => {
-        const movieInfo = await db.movies('movie').find({});
+            const movieInfo = await db.collection('movie').find({});
+            console.log(movieInfo);
         while (movieInfo.hasNext()){
             movieList.push(movieInfo);
         }
