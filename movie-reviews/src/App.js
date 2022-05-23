@@ -1,23 +1,37 @@
 import React from "react";
 import './App.css';
-import {Home, LeaveReview, NotFoundPage, Nav, Footer} from './pages';
+import {Home} from "./pages/Home";
+import { LeaveReview } from "./pages/LeaveReview";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import {  Nav} from './components/nav.js';
+import {  Footer } from './components/footer.js';
 import {Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 function App(){
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(false);
   
-  //get data from movies.json
+  //get data from moviesJSON.json
   useEffect( () => {
-    setLoading(true);
-    fetch("/movies.json")
-    .then( response => response.json() ) 
-    .then( setMovies )
-    .then(() => setLoading(false))
-    .then( console.log(movies))
-    .catch( e => console.log(e.message) );
+    const fetchData = async () => {
+      const result = await fetch(`/api/movies`);
+      const body = await result.json();
+      console.log(body);
+      setMovies(body);
+    }
+    fetchData();
+
+    console.log(movies);
   },[]);
+
+  //   fetch('/moviesJSON.json')
+  //   .then( response => response.json() ) 
+  //   .then( setMovies )
+  //   .then(() => setLoading(false))
+  //   .then( console.log(movies))
+  //   .catch( e => console.log(e.message) );
+  // },[]);
 
   if (loading) return <h1>Loading...</h1>;
 

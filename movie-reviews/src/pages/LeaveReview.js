@@ -1,58 +1,7 @@
 import React, { useEffect, useState} from "react";
-import {Link, useLocation } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//home element to display movie reviews
-export function Home(props){
-    let movieList=[];
-    useEffect( () => {
-        console.log(props.movies);}, [movieList]);
-
-    //function to handle remove movie button
-    const removeMovie = (event) => {
-        const name = event.target.name;
-        if(props.movies.length === 1){
-            props.setMovies(null);
-        }
-        if(props.movies){
-        props.movies.forEach(movie => {
-            if (movie.title !== name){
-                movieList.push(movie);
-                props.setMovies(movieList);
-            }});
-        alert("Movie has been removed!")
-    }}
-
-    //home display html to be returned
-    if(props.movies){
-    return (
-        <div className="container">
-            <div style={{paddingBottom: "100px"}} id="align-content-*-center">
-                <h1><strong>MOVIE REVIEWS</strong></h1>
-                <hr></hr>
-                <ul style={{listStyleType: "none", textAlign: "center"  }}>
-                {props.movies.map(movie=> ( 
-                    <>
-                    <li key={movie.index}><h4><strong>{movie.title}</strong></h4></li>
-                    <li key={movie.index}>Release: {movie.release}</li>
-                    <li key={movie.index}>Actors: {movie.actors}</li>
-                    <li key={movie.index}>Rating: {movie.rating}/5</li>
-                    <img src={movie.image} alt="movie poster"></img><br /><br />
-                    <button className= "btn-primary" onClick={removeMovie} name={movie.title}>Remove Movie</button>               
-                    <hr></hr>
-                    </>
-                ))}
-                </ul>
-            </div>
-        </div>
-    )};
-    
-    //to be displayed if movie list is empty
-    return (
-        <p style={{paddingBottom: "500px"}}><h1>NO AVAILABLE MOVIE REVIEWS</h1></p>
-    )};
-    
 //leave review page element
 export function LeaveReview(props){
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -112,39 +61,3 @@ export function LeaveReview(props){
         </div>
     </div>
     )};
-
-//nav bar html 
-export function Nav() {
-    return (
-      <div className="topnav">
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/leavereview" >Leave Review</Link>
-        </nav>
-      </div>
-    )};
-
-//footer html 
-export function Footer() {
-    return (
-        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
-            <div className="container text-center">
-                <small>Source code @ <a href="https://github.com/robinlaws/Movie-Reviews-React.git">Robin-Laws-Github</a></small>
-            </div>
-        </footer>
-    )};
-
-//page not found html
-export function NotFoundPage(){
-    let location = useLocation();
-    console.log(location);
-    return (
-        <div><h3>OOPS!</h3><br/>
-            <h4> Page at location: {location.pathname} does not exist</h4>
-        </div>
-    )};
-
-
-
-
-
