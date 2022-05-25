@@ -5,6 +5,7 @@ const movieModel = require('./models/movieModels')
 const cors = require('cors');
 const { db } = require("./models/movieModels");
 const multer = require('multer');
+
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "../client/public/movieImages");
@@ -32,10 +33,13 @@ app.get("/api/getMovies", (req, res) => {
     });
 });
 
-app.post("/api/createMovie", upload.single('imageFile'), async (req, res) => {
-    console.log(req.file);
+
+app.post("/api/createMovie", upload.single("imageFile"),  async (req, res) => {
     const movie = req.body;
-    movie.image = req.file.destination;
+    console.log(movie);
+    const fileDestination = movie.imageFile[0].destination;
+    console.log(fileDestination);
+    movie.image = fileDestination;
     const newMovie = new movieModel(movie);
     await newMovie.save();
     res.json(movie);
