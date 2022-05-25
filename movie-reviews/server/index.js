@@ -18,7 +18,7 @@ const fileStorageEngine = multer.diskStorage({
 const upload = multer({
     storage: fileStorageEngine
 });
-app.use('/uploads', express.static(__dirname + '/uploads'));
+// app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -52,15 +52,17 @@ app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
 });
 
 app.post("/api/updateMovies", async (req, res) => {
-    const movie = req.body;
-    await db.collection("movie").findOneAndDelete({title: movie.title});
-    // let doc = movieModel.findOneAndDelete({ title: movie.title}, (err, result) => {
-    //     if (err) {
-    //         res.json(error);
-    //     } else {
-    //         res.json("Deleted from database.");
-    //     }
-    // }).then()
+
+    console.log(req.body);
+    movieModel.findOneAndDelete({ title: req.body}, (err, result) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    })
 });
 
 app.listen(8000, () => console.log("Server running. Listening on 8000"));
+
+

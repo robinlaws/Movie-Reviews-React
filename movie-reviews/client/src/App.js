@@ -24,7 +24,7 @@ function App() {
     setLoading(true);
     getMovies();
     setLoading(false);
-  }, []);
+  }, [movieList]);
 
   if (loading) return <h1>Loading...</h1>;
 

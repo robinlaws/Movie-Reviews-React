@@ -4,10 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export function Home(props){
+
     const removeMovie = async (event) => {
        const movieTitle = event.target.name;
+       console.log(movieTitle);
        props.setMovies(props.movies.filter(movie => movie.title !== movieTitle));
-    }
+       await fetch("http://localhost:8000/api/updateMovies", {
+           method: "POST",
+           body: event.target.name,
+       }).then((response) => {console.log(response.data)});
+    };
     
     if(props.movies){
         return (
