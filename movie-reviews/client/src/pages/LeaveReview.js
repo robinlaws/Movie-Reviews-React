@@ -11,7 +11,7 @@ export function LeaveReview(props){
 
     
     useEffect(() => {
-            reset({title: "", release: "", actors: "", rating: ""})
+            reset({title: "", release: "", actors: "", rating: ""});
         }, [success]);
 
     const onSubmit = (event) => {
@@ -27,6 +27,7 @@ export function LeaveReview(props){
             method: "POST",
             body: formData,
         }).catch((error) => ("Something went wrong!", error))
+        setSuccess(true);
       }
       return (
         <div className="container">

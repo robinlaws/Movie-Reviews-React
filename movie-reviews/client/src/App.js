@@ -34,7 +34,7 @@ function App() {
     <Nav />
       <Routes>
           <Route exact path="/" element={<Home movies={movieList} setMovies = {setMovieList} getMovies={getMovies} /> }/>
-          <Route exact path="/leavereview" element={<LeaveReview movies={movieList} setMovies={setMovieList}/>}/>
+          <Route exact path="/leavereview" element={<LeaveReview movies={movieList} setMovies={setMovieList} getMovies={getMovies}/>}/>
           <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </div>

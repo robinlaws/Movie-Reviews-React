@@ -11,13 +11,13 @@ const fileStorageEngine = multer.diskStorage({
         cb(null, 'uploads');
     }, 
         filename: (req, file, cb) => {
-            cb(null, new Date().toISOString+file.originalname)
+            cb(null, file.originalname)
         }
     });
 const upload = multer({
     storage: fileStorageEngine
 });
-app.use('/uploads', express.statis(__dirname + '/uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));

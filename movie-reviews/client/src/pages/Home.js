@@ -4,14 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export function Home(props){
-
     const removeMovie = async (event) => {
        const movieTitle = event.target.name;
-       //props.setMovies(props.movies.filter(movie => movie.title !== movieTitle));
-       await props.setMovies(props.getMovies());
+       props.setMovies(props.movies.filter(movie => movie.title !== movieTitle));
     }
     
-    if(props.movies.length > 0){
+    if(props.movies){
         return (
             <div className="container">
             <div style={{paddingBottom: "100px"}} id="align-content-*-center">
