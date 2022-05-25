@@ -8,18 +8,20 @@ const multer = require('multer');
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "../client/public/movieImages");
+        cb(null, 'uploads');
     }, 
         filename: (req, file, cb) => {
-            cb(null, file.originalname)
+            cb(null, new Date().toISOString+file.originalname)
         }
     });
 const upload = multer({
     storage: fileStorageEngine
 });
+app.use('/uploads', express.statis(__dirname + '/uploads'));
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/movies');
 
@@ -34,15 +36,18 @@ app.get("/api/getMovies", (req, res) => {
 });
 
 
-app.post("/api/createMovie", upload.single("imageFile"),  async (req, res) => {
-    const movie = req.body;
-    console.log(movie);
-    const fileDestination = movie.imageFile[0].destination;
-    console.log(fileDestination);
-    movie.image = fileDestination;
-    const newMovie = new movieModel(movie);
+app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
+    console.log(req.file);
+    const newMovie = new movieModel({
+        _id: new mongoose.Types.ObjectId(),
+        title: req.body.title,
+        actors: req.body.actors,
+        release: req.body.release,
+        rating: req.body.rating,
+        image: req.file.path
+    })
     await newMovie.save();
-    res.json(movie);
+    res.json(newMovie);
 });
 
 app.post("/api/updateMovies", async (req, res) => {

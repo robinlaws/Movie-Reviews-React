@@ -8,18 +8,21 @@ export function LeaveReview(props){
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [success, setSuccess] = useState(false);
+
     
     useEffect(() => {
             reset({title: "", release: "", actors: "", rating: ""})
         }, [success]);
 
     const onSubmit = (event) => {
+        let image = event.image[0];
+        console.log(image);
         const formData = new FormData();
         formData.append("title", event.title);
         formData.append("release", event.release);
         formData.append("actors", event.actors);
         formData.append("rating", event.rating);
-        formData.append("imageFile", event.imageFile);
+        formData.append("image", image);
         fetch("http://localhost:8000/api/createMovie", {
             method: "POST",
             body: formData,
@@ -52,7 +55,7 @@ export function LeaveReview(props){
                     </div>
                     <br></br>
                     <div>
-			        <input id="imageFile" type="file" name="imageFile" single="true" {...register("imageFile")}/> 
+			        <input id="imageFile" type="file" name="imageFile" single="true" {...register("image")}/> 
                     </div>
                     <input className="btn-primary" type="submit" />
                 </form>
