@@ -22,7 +22,7 @@ export function Home(props){
                     <li key={movie.index}>Release: {movie.release}</li>
                     <li key={movie.index}>Actors: {movie.actors}</li>
                     <li key={movie.index}>Rating: {movie.rating}/5</li>
-                    <img key={movie.index} src={movie.image} alt="movie poster"></img><br /><br />
+                    <img key={movie.index} src={"./movieImages/" + movie.image} alt="movie poster"></img><br /><br />
                     <button className= "btn-primary" onClick={removeMovie} name={movie.title}>Remove Movie</button>               
                     <hr></hr>
                     </>

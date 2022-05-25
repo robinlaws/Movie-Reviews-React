@@ -8,11 +8,12 @@ const multer = require('multer');
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads');
+        cb(null, '../client/public/movieImages/');
     }, 
         filename: (req, file, cb) => {
             cb(null, file.originalname)
-        }
+        },
+
     });
 const upload = multer({
     storage: fileStorageEngine
@@ -44,7 +45,7 @@ app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
         actors: req.body.actors,
         release: req.body.release,
         rating: req.body.rating,
-        image: req.file.path
+        image: req.file.filename
     })
     await newMovie.save();
     res.json(newMovie);
