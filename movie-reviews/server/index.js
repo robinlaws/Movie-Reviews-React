@@ -43,7 +43,6 @@ app.post("/api/uploadJSON/" + API_KEY, upload.single("JSON"), async (req, res) =
     const body = req.file;
     const allowedFileTypes = ["json"];
     const fileExtension = body.filename.split(".").at(-1);
-    console.log(body);
     if (allowedFileTypes.includes(fileExtension)){
         movieModel.insertMany({body}, function(err, result) {
             if(err){
