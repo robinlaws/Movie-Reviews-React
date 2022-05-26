@@ -1,5 +1,5 @@
-
 import React from 'react';
+
 //footer html 
 export function Footer() {
     return (
@@ -8,4 +8,5 @@ export function Footer() {
                 <small>Source code @ <a href="https://github.com/robinlaws/Movie-Reviews-React.git">Robin-Laws-Github</a></small>
             </div>
         </footer>
-    )};
+    )
+};

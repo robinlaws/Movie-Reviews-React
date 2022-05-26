@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useForm } from "react-hook-form";
-import Axios from "axios";
 const FormData = require('form-data');
 
 export function LeaveReview(props){
@@ -9,7 +8,6 @@ export function LeaveReview(props){
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [success, setSuccess] = useState(false);
 
-    
     useEffect(() => {
             reset({title: "", release: "", actors: "", rating: ""});
         }, [success]);
@@ -30,6 +28,7 @@ export function LeaveReview(props){
         setSuccess(true);
         alert("Movie has been added successfully!");
       }
+
       return (
         <div className="container">
             <h1><strong>LEAVE A REVIEW</strong></h1>

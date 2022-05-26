@@ -2,21 +2,20 @@ import './App.css';
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import React from "react";
-import './App.css';
-import {Home} from "./pages/Home";
+import { Home } from "./pages/Home";
 import { LeaveReview } from "./pages/LeaveReview";
 import { NotFoundPage } from "./pages/NotFoundPage";
-import {  Nav} from './components/nav.js';
-import {  Footer } from './components/footer.js';
-import {Routes, Route } from "react-router-dom";
+import { Nav } from './components/nav.js';
+import { Footer } from './components/footer.js';
+import { Routes, Route } from "react-router-dom";
 
 function App() {
 
   const getMovies = () => {
     Axios.get("http://localhost:8000/api/getMovies").then((response) => {
-      setMovieList(response.data);
-  });
+      setMovieList(response.data)});
   }
+  
   const [movieList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -41,6 +40,6 @@ function App() {
     <Footer />
   </>
   );
-}
+};
 
 export default App;

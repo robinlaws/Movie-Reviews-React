@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require('mongoose');
 const movieModel = require('./models/movieModels')
 const cors = require('cors');
-const { db } = require("./models/movieModels");
 const multer = require('multer');
 
 const fileStorageEngine = multer.diskStorage({
@@ -18,11 +17,10 @@ const fileStorageEngine = multer.diskStorage({
 const upload = multer({
     storage: fileStorageEngine
 });
-// app.use('/uploads', express.static(__dirname + '/uploads'));
+
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-
 
 mongoose.connect('mongodb://127.0.0.1:27017/movies');
 
@@ -35,7 +33,6 @@ app.get("/api/getMovies", (req, res) => {
         }
     });
 });
-
 
 app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
     console.log(req.file);
