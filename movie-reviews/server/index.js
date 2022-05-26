@@ -7,6 +7,7 @@ const movieModel = require('./models/movieModels')
 const cors = require('cors');
 const multer = require('multer');
 const { db } = require('./models/movieModels');
+const API_KEY = process.env.REACT_APP_API_KEY
 
 
 const fileStorageEngine = multer.diskStorage({
@@ -38,19 +39,24 @@ app.get("/api/getMovies", (req, res) => {
     });
 });
 
-app.post("/api/uploadJSON", upload.single("JSON"), async (req, res) => {
+app.post("/api/uploadJSON/" + API_KEY, upload.single("JSON"), async (req, res) => {
     const body = req.file;
-    console.log(body)
-    movieModel.insertMany({body}, function(err, result) {
-        if(err){
-            res.json(err);
-        } else{
-            res.json(result)
-        }
-
-        db.close();
-    })
+    const allowedFileTypes = ["json"];
+    const fileExtension = body.filename.split(".").at(-1);
+    console.log(body);
+    if (allowedFileTypes.includes(fileExtension)){
+        movieModel.insertMany({body}, function(err, result) {
+            if(err){
+                res.json(err);
+            } else{
+                res.json(result)
+            }}) 
+    } else {
+        res.json("Invalid file type. Must be JSON.");
+    }
+    db.close();
 });
+
 
 app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
     const newMovie = new movieModel({
