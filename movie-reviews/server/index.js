@@ -1,9 +1,12 @@
+const path = require('path');
+
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
 const movieModel = require('./models/movieModels')
 const cors = require('cors');
 const multer = require('multer');
+
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,7 +20,7 @@ const fileStorageEngine = multer.diskStorage({
 const upload = multer({
     storage: fileStorageEngine
 });
-
+app.use(express.static(path.join(__dirname, '/build')))
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -58,6 +61,10 @@ app.post("/api/updateMovies", async (req, res) => {
             res.json(result);
         }
     })
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
 app.listen(8000, () => console.log("Server running. Listening on 8000"));
