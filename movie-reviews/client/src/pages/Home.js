@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Axios from "axios";
+import {Card, Button } from 'react-bootstrap'
 
 export function Home(props){
     const removeMovie = async (event) => {
@@ -17,31 +18,41 @@ export function Home(props){
             alert("Movie successfully deleted!")};
             await props.getMovies();      
     };
+
+    const MovieCard = (movie) => {
+        return(
+            <div style = {{alignItems: "center", justifyContent: "center", width: "100%", height: "100%", display: "flex", padding: "10px"}}>
+                <Card style={{ width: '50%', justifyContent:"center", alignItems: "center", padding: "auto", backgroundColor: "rgb(36, 35, 39 "}} id="align-content-*-center">
+                    <Card.Body>
+                        <Card.Title><h3>{movie.title}</h3></Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">Release: {movie.release}</Card.Subtitle>
+                        <Card.Text>
+                            <div id="card-text"><strong>Actors:</strong> {movie.actors}</div>
+                            <div id="card-text"><strong>Rating:</strong> {movie.rating}/5</div>
+                        </Card.Text>
+                        <Card.Img src={"./movieImages/" + movie.image} alt="movie poster"/>
+                        <br/><br/>
+                        <Button onClick={removeMovie} name={movie.title}>Remove Movie</Button>
+                    </Card.Body>
+                </Card>
+            </div>
+        )
+    }
  
     if((props.movies).length > 0){
         return (
-            <div className="container">
-                <div style={{paddingBottom: "100px"}} id="align-content-*-center">
-                    <h1><strong>MOVIE REVIEWS</strong></h1>
+            <div className="container" style={{justifyContent: "center", alignItems: "center"}} id="align-content-*-center">
+            <h1><strong>MOVIE REVIEWS</strong></h1>
+            <hr></hr>
+            <ul style={{listStyleType: "none", textAlign: "center"  }}>
+                {props.movies.map((movie, i)=> ( 
+                    <>
+                    {MovieCard(movie)}
                     <hr></hr>
-                    <ul style={{listStyleType: "none", textAlign: "center"  }}>
-                    {props.movies.map((movie)=> ( 
-                        <>
-                            <li><h4><strong>{movie.title}</strong></h4></li>
-                            <li>Release: {movie.release}</li>
-                            <li>Actors: {movie.actors}</li>
-                            <li>Rating: {movie.rating}/5</li>
-                            <img src={"./movieImages/" + movie.image} alt="movie poster"></img><br /><br />
-                            <button className= "btn-primary" onClick={removeMovie} name={movie.title}>Remove Movie</button>               
-                            <hr></hr>
-                        </>
-                    ))}
-                </ul>
-            </div>
+                    </>
+                ))}
+                <br/><br/>
+            </ul>
         </div>
-    )};
-
-    return (
-        <div style={{paddingBottom: "550px"}}><h1>NO AVAILABLE MOVIE REVIEWS</h1></div>
-    )};
-    
+    )};  
+}

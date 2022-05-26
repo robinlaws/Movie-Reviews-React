@@ -1,14 +1,25 @@
 .App {
   text-align: center;
-  background-color: rgb(241, 237, 237);
-  min-height: 75%;
-  padding-bottom: 100px; 
+  background-color: rgb(237, 235, 240);
+  height: 100%;
+  padding-bottom: 400px;
 }
 
-h1, h2, h3, h4 {
+h1 {
   font-family:  'American Typewriter', serif, monospace;
   font-weight: bold;
   padding-top: 20px;
+}
+
+h2, h3, h4{
+  font-family:  'American Typewriter', serif, monospace;
+  font-weight: bold;
+  padding-top: 20px;
+  color:rgb(219, 213, 208)
+
+}
+#card-text {
+  color:rgb(219, 213, 208)
 }
 
 .input-group{
@@ -20,12 +31,7 @@ label, .selection {
   font-weight: bold;
 }
 
-body {
-  margin: 0;
-  font-family:  'American Typewriter', serif, monospace;
-  padding: 20px 20px;
-  
-}
+
 
 code {
   font-family:  'American Typewriter', serif,
@@ -50,7 +56,7 @@ code {
 
 .topnav a:hover {
   background-color: #ddd;
-  color: gray;
+  color: rgb(151, 146, 146);
 }
 
 h1, h2, h3 {
@@ -61,16 +67,36 @@ h1, h2, h3 {
 
 .formContainer{
   max-width: 800px;
-  border: 5px solid #333;
+  border: 15px solid rgb(0, 0, 0);
   justify-content: center;
   text-align: center;
   margin:auto;
   padding: 50px;
-  background-color: rgb(219, 213, 208);
-  border-radius: 10%;
+  background-color: white;
+  border-radius: 5%;
 }
 
 .input-group-text{
-  text-align: center;
+  justify-content: center;
 }
 
+#sticky-footer{
+  position:fixed;
+  padding: 10px 10px 10px 10px;
+  bottom:0;
+  width:100%;
+}
+
+#span {
+  background-color: rgb(229, 186, 195);
+  font-size: small;
+}
+
+img {
+  border-radius: 8px;
+  width: 150px;
+  padding: 5px;
+  height: 500px;
+  border: 10px solid white;
+
+}

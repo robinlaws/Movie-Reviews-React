@@ -9,6 +9,7 @@ import { Nav } from './components/nav.js';
 import { Footer } from './components/footer.js';
 import { Routes, Route } from "react-router-dom";
 
+
 function App() {
 
   const getMovies = () => {
@@ -28,17 +29,15 @@ function App() {
   if (loading) return <h1>Loading...</h1>;
 
   return (
-    <>
     <div className="App">
-    <Nav />
-      <Routes>
-          <Route exact path="/" element={<Home movies={movieList} setMovies = {setMovieList} getMovies={getMovies} /> }/>
-          <Route exact path="/leavereview" element={<LeaveReview movies={movieList} setMovies={setMovieList} getMovies={getMovies}/>}/>
-          <Route path="*" element={<NotFoundPage/>}/>
-      </Routes>
+      <Nav />
+        <Routes>
+            <Route exact path="/" element={<Home movies={movieList} setMovies = {setMovieList} getMovies={getMovies} /> }/>
+            <Route exact path="/leavereview" element={<LeaveReview movies={movieList} setMovies={setMovieList} getMovies={getMovies}/>}/>
+            <Route path="*" element={<NotFoundPage/>}/>
+        </Routes>
+      <Footer />
     </div>
-    <Footer />
-  </>
   );
 };
 
