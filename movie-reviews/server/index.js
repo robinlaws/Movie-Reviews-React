@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const movieModel = require('./models/movieModels')
 const cors = require('cors');
 const multer = require('multer');
+const { db } = require('./models/movieModels');
 
 
 const fileStorageEngine = multer.diskStorage({
@@ -37,8 +38,21 @@ app.get("/api/getMovies", (req, res) => {
     });
 });
 
+app.post("/api/uploadJSON", upload.single("JSON"), async (req, res) => {
+    const body = req.file;
+    console.log(body)
+    movieModel.insertMany({body}, function(err, result) {
+        if(err){
+            res.json(err);
+        } else{
+            res.json(result)
+        }
+
+        db.close();
+    })
+});
+
 app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
-    console.log(req.file);
     const newMovie = new movieModel({
         _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
@@ -52,7 +66,6 @@ app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
 });
 
 app.post("/api/updateMovies", async (req, res) => {
-    console.log(req.body.title);
     const movieTitle = req.body.title;
     movieModel.findOneAndDelete({title: movieTitle} , function (err, result) {
         if (err) {

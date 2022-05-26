@@ -27,8 +27,8 @@ export function Home(props){
                         <Card.Title><h3>{movie.title}</h3></Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">Release: {movie.release}</Card.Subtitle>
                         <Card.Text>
-                            <div id="card-text"><strong>Actors:</strong> {movie.actors}</div>
-                            <div id="card-text"><strong>Rating:</strong> {movie.rating}/5</div>
+                            <li id="card-text"><strong>Actors:</strong> {movie.actors}</li>
+                            <li id="card-text"><strong>Rating:</strong> {movie.rating}/5</li>
                         </Card.Text>
                         <Card.Img src={"./movieImages/" + movie.image} alt="movie poster"/>
                         <br/><br/>
@@ -37,22 +37,23 @@ export function Home(props){
                 </Card>
             </div>
         )
-    }
+    };
  
     if((props.movies).length > 0){
         return (
             <div className="container" style={{justifyContent: "center", alignItems: "center"}} id="align-content-*-center">
-            <h1><strong>MOVIE REVIEWS</strong></h1>
-            <hr></hr>
-            <ul style={{listStyleType: "none", textAlign: "center"  }}>
-                {props.movies.map((movie, i)=> ( 
-                    <>
-                    {MovieCard(movie)}
-                    <hr></hr>
-                    </>
-                ))}
-                <br/><br/>
-            </ul>
-        </div>
-    )};  
-}
+                <h1><strong>MOVIE REVIEWS</strong></h1>
+                <hr></hr>
+                <ul style={{listStyleType: "none", textAlign: "center"  }}>
+                    {props.movies.map((movie, i)=> ( 
+                        <div key={i}>
+                            {MovieCard(movie)}
+                            <hr></hr>
+                        </div>
+                    ))}
+                    <br/><br/>
+                </ul>
+            </div>
+        )
+    };  
+};
