@@ -1,21 +1,28 @@
 import React, { useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Axios from "axios";
 
 
 
 export function Home(props){
+    props.getMovies();
 
     const removeMovie = async (event) => {
-       const movieTitle = event.target.name;
-       console.log(movieTitle);
-       props.setMovies(props.movies.filter(movie => movie.title !== movieTitle));
-       await fetch("http://localhost:8000/api/updateMovies", {
-           method: "POST",
-           body: event.target.name,
-       }).then((response) => {console.log(response.data)});
+        const confirm = window.confirm("Are you sure you want to remove " + event.target.name + "?");
+        if(confirm){
+        const data = event.target.name;
+        const options = {
+            header: 'x-www-form-urlencoded'
+        }
+       const url = "http://localhost:8000/api/updateMovies";
+       Axios.post(url, {title: data}, options).then ((response) => {
+        console.log(response);
+       });
+       await props.getMovies();
+       alert("Movie successfully deleted!")};
     };
     
-    if(props.movies){
+    if((props.movies).length > 0){
         return (
             <div className="container">
             <div style={{paddingBottom: "100px"}} id="align-content-*-center">
@@ -39,6 +46,6 @@ export function Home(props){
     )};
 
     return (
-        <p style={{paddingBottom: "500px"}}><h1>NO AVAILABLE MOVIE REVIEWS</h1></p>
+        <div style={{paddingBottom: "550px"}}><h1>NO AVAILABLE MOVIE REVIEWS</h1></div>
     )};
     

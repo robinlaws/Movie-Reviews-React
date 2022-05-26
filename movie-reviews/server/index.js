@@ -52,9 +52,9 @@ app.post("/api/createMovie", upload.single("image"),  async (req, res) => {
 });
 
 app.post("/api/updateMovies", async (req, res) => {
-
-    console.log(req.body);
-    movieModel.findOneAndDelete({ title: req.body}, (err, result) => {
+    console.log(req.body.title);
+    const movieTitle = req.body.title;
+    movieModel.findOneAndDelete({title: movieTitle} , function (err, result) {
         if (err) {
             res.json(err);
         } else {
