@@ -11,7 +11,7 @@ export function Home(props){
             const options = {
                 header: 'x-www-form-urlencoded'
             }
-            const url = "http://localhost:8000/api/updateMovies";
+            const url = "/api/updateMovies";
             Axios.post(url, {title: data}, options).then ((response) => {
                 console.log(response);
             });

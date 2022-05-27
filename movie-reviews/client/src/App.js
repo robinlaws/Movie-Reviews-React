@@ -13,7 +13,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
 
   const getMovies = () => {
-    Axios.get("http://localhost:8000/api/getMovies").then((response) => {
+    Axios.get(`/api/getMovies`).then((response) => {
       setMovieList(response.data)});
   }
   

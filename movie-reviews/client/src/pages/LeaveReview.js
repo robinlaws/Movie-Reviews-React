@@ -23,7 +23,7 @@ export function LeaveReview(props){
         formData.append("actors", event.actors);
         formData.append("rating", event.rating);
         formData.append("image", image);
-        fetch("http://localhost:8000/api/createMovie", {
+        fetch("/api/createMovie", {
             method: "POST",
             body: formData,
         }).catch((error) => ("Something went wrong!", error))

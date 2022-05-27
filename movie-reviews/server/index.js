@@ -22,6 +22,7 @@ const fileStorageEngine = multer.diskStorage({
 const upload = multer({
     storage: fileStorageEngine
 });
+
 app.use(express.static(path.join(__dirname, '/build')))
 app.use(express.json());
 app.use(cors());
